@@ -16,16 +16,21 @@ India",
                             :to_name => "Sindhuja" ,
                             :to_details => "5E, Dev Apartments,
 17, Sundarajan street,
-Abiramapuram,
 Chennai - 600018,
 India" ,
                             :subtotal => "$1100",
                             :tax => "NA",
-                            :total => "$1100"
+                            :total => "$1100",
+                            :cover => "Dear Sindhuja,
+
+Please find the invoice for my services. Please complete the payment at your earliest convenience. Do not hesitate to contact me with any questions.
+
+Regards,
+Vignesh"
 
     )
-    @invoice.line_items.build(:service => "Design" , :description => "PSD to HTML" , :quantity => "10" , :price => "10" , :subtotal => "100")
-    @invoice.line_items.build(:service => "Development" , :description => "Ruby on Rails code" , :quantity => "100" , :price => "10" , :subtotal => "1000")
+    @invoice.line_items.build(:service => "Design" , :description => "PSD to HTML" , :quantity => "10 hours" , :price => "$10/hr" , :subtotal => "$100")
+    @invoice.line_items.build(:service => "Development" , :description => "Ruby on Rails code" , :quantity => "100 hours" , :price => "$10/hr" , :subtotal => "$1000")
     5.times do
       @invoice.line_items.build
     end
@@ -103,6 +108,6 @@ India" ,
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.require(:invoice).permit(:name, :number, :from, :to, :total, :subtotal, :contact , :from_name ,:from_details , :to_name , :to_details , :tax , :line_items_attributes => [:id , :price , :service , :description ,:quantity , :subtotal])
+    params.require(:invoice).permit(:name, :number, :from, :to, :total, :subtotal, :contact , :from_name ,:from_details , :to_name , :to_details , :tax , :cover , :line_items_attributes => [:id , :price , :service , :description ,:quantity , :subtotal] )
   end
 end

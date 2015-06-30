@@ -1,95 +1,129 @@
-<%= form_for @invoice do |f| %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6">
-      <h1>
-        <%= f.text_field :name , :placeholder => "Company name" %>
-      </h1>
-    </div>
-    <div class="col-xs-6 text-right">
-      <h1>INVOICE</h1>
-      <h1><small>Invoice # <%= f.text_field :number , :placeholder => "001" %></small></h1>
-    </div>
+<div class="container" id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          Invoice as Pdf
+        </a>
+      </li>
+      <li>
+        <a href="#">Dashboard</a>
+      </li>
+      <li>
+        <a href="#">Overview</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
   </div>
-  <div class="row">
-    <div class="col-xs-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4><%= f.text_field :from_name %></h4>
-        </div>
-        <div class="panel-body">
-          <p>
-            <%= f.text_area :from_details , :cols => 50 , :rows => 5%>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-5 col-xs-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4>To : <%= f.text_field :to_name %></h4>
-        </div>
-        <div class="panel-body">
-          <p>
-            <%= f.text_area :to_details , :cols => 50 , :rows => 5%>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- / end client details section -->
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th>
-        <h4>Service</h4>
-      </th>
-      <th>
-        <h4>Description</h4>
-      </th>
-      <th>
-        <h4>Qty</h4>
-      </th>
-      <th>
-        <h4>Price</h4>
-      </th>
-      <th>
-        <h4>Sub Total</h4>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <%= f.fields_for :line_items do |builder| %>
-    <%= render 'line_item_fields' , :f => builder %>
-    <% end  %>
+  <!-- /#sidebar-wrapper -->
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <%= form_for @invoice do |f| %>
+          <div class="row">
+            <div class="col-xs-6">
+              <h1>
+                <%= f.text_field :name, :placeholder => "Company name" , :style => "width:100%" %>
+              </h1>
+            </div>
+            <div class="col-xs-6 text-right">
+              <h1>INVOICE</h1>
 
-    </tbody>
-  </table>
-  <%#= link_to_add_fields "Add LineItem", f, :line_items %>
+              <h1>
+                <small>Invoice # <%= f.text_field :number, :placeholder => "001", :style => "width:10%" %></small>
+              </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4><%= f.text_field :from_name , :style => "width:100%"%></h4>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    <%= f.text_area :from_details,  :rows => 5 , :style => "width:100%"%>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5 col-xs-offset-2">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4> <%= f.text_field :to_name , :style => "width:100%"%></h4>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    <%= f.text_area :to_details, :rows => 5 , :style => "width:100%" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= f.text_area :cover, :rows => 9, :style => "width:100%" %>
+          <!-- / end client details section -->
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>
+                <h4>Service</h4>
+              </th>
+              <th>
+                <h4>Description</h4>
+              </th>
+              <th>
+                <h4>Qty</h4>
+              </th>
+              <th>
+                <h4>Price</h4>
+              </th>
+              <th>
+                <h4>Sub Total</h4>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <%= f.fields_for :line_items do |builder| %>
+                <%= render 'line_item_fields', :f => builder %>
+            <% end %>
 
-  <div class="row text-right">
-    <div class="col-xs-2 col-xs-offset-8">
-      <p>
-        <strong>
-          Sub Total : <br>
-          TAX : <br>
-          Total : <br>
-        </strong>
-      </p>
-    </div>
-    <div class="col-xs-2">
-      <strong>
-        <%= f.text_field :subtotal %> <br>
-        <%= f.text_field :tax %> <br>
-        <%= f.text_field :total %> <br>
-      </strong>
+            </tbody>
+          </table>
+          <%#= link_to_add_fields "Add LineItem", f, :line_items %>
+
+          <div class="row text-right">
+            <div class="col-xs-2 col-xs-offset-8">
+              <p>
+                <strong>
+                  Sub Total : <br>
+                  TAX : <br>
+                  Total : <br>
+                </strong>
+              </p>
+            </div>
+            <div class="col-xs-2">
+              <strong>
+                <%= f.text_field :subtotal %> <br>
+                <%= f.text_field :tax %> <br>
+                <%= f.text_field :total %> <br>
+              </strong>
+            </div>
+          </div>
+          <div class="text-center">
+            <%= f.submit :class => "btn btn-primary" %>
+          </div>
+
+      <% end %>
     </div>
   </div>
 </div>
-    <div class="text-center">
-    <%= f.submit :class => "btn btn-primary" %>
-    </div>
-<% end  %>
+
 
 
 <script type="text/javascript">

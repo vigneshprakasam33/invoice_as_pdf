@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -32,8 +34,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  gem 'mysql2'
+end
 
-gem 'prawn'
+
 #gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf'
 gem 'pdfkit'
@@ -43,10 +48,11 @@ gem 'pdfkit'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
- gem 'unicorn'
+# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+# Add this if you're using rbenv
+# gem 'capistrano-rbenv', github: "capistrano/rbenv"

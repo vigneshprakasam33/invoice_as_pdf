@@ -1,4 +1,4 @@
-root = '/Volumes/CodeZone/RailsProjects/invoiceaspdf'
+root = '/apps/invoice_as_pdf/current'
 #root = '/Volumes/CodeZone/twilio/attendant'
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
@@ -15,7 +15,7 @@ if environment == 'development'
   worker_processes 6
   listen '127.0.0.1:5040'
 elsif environment == 'production'
-  listen '172.31.43.113:3000'
+  listen '45.55.8.178:3000'
   worker_processes 8
 end
 

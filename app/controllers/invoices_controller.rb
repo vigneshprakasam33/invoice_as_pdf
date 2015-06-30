@@ -29,8 +29,8 @@ Regards,
 Vignesh"
 
     )
-    @invoice.line_items.build(:service => "Design" , :description => "PSD to HTML" , :quantity => "10 hours" , :price => "$10/hr" , :subtotal => "$100")
-    @invoice.line_items.build(:service => "Development" , :description => "Ruby on Rails code" , :quantity => "100 hours" , :price => "$10/hr" , :subtotal => "$1000")
+    @invoice.line_items.build(:service => "Design" , :quantity => "10 hours" , :price => "$10/hr" , :subtotal => "$100")
+    @invoice.line_items.build(:service => "Development" , :quantity => "100 hours" , :price => "$10/hr" , :subtotal => "$1000")
     5.times do
       @invoice.line_items.build
     end
@@ -64,16 +64,9 @@ Vignesh"
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
+    @invoice.save
 
-    respond_to do |format|
-      if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @invoice }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to "http://localhost:5040/invoices/#{@invoice.id}.pdf"
   end
 
   # PATCH/PUT /invoices/1

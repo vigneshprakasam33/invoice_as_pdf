@@ -45,9 +45,6 @@
             <h4>Service</h4>
           </th>
           <th>
-            <h4>Description</h4>
-          </th>
-          <th>
             <h4>Qty</h4>
           </th>
           <th>
@@ -62,7 +59,6 @@
         <% @invoice.line_items.each do |l| %>
         <tr>
           <td><%= l.service %></td>
-          <td><%= l.description %></td>
           <td class="text-right"><%= l.quantity %></td>
           <td class="text-right"><%= l.price %></td>
           <td class="text-right"><%= l.subtotal %></td>

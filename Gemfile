@@ -50,7 +50,7 @@ gem 'pdfkit'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'

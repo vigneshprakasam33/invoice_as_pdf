@@ -139,6 +139,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+  libv8 (~> 3.16.14.8)
   mysql2
   pdfkit
   rails (= 4.0.0)

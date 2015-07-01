@@ -67,9 +67,9 @@ Vignesh"
     @invoice.save
 
     if Rails.env == "development"
-      redirect_to "http://localhost:5040/invoices/#{@invoice.uuid}.pdf"
+      redirect_to "http://localhost:5040/invoices/#{@invoice.id}.pdf"
     elsif Rails.env == "production"
-      redirect_to "http://invoiceaspdf.com/invoices/#{@invoice.uuid}.pdf"
+      redirect_to "http://invoiceaspdf.com/invoices/#{@invoice.id}.pdf"
     end
 
   end
@@ -101,7 +101,7 @@ Vignesh"
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_invoice
-    @invoice = Invoice.find_by_uuid(params[:id])
+    @invoice = Invoice.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

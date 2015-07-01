@@ -1,5 +1,5 @@
 Invoiceaspdf::Application.routes.draw do
-  resources :invoices do
+  resources :invoices , :only => [:show , :index , :create]do
     collection do
       get :generate_pdf
     end

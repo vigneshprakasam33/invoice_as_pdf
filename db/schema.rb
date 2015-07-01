@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629183725) do
+ActiveRecord::Schema.define(version: 20150701185312) do
 
   create_table "invoices", force: true do |t|
     t.string   "name"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20150629183725) do
     t.text     "from_details"
     t.text     "to_details"
     t.string   "tax"
+    t.text     "cover"
+    t.uuid     "uuid"
   end
 
   create_table "line_items", force: true do |t|

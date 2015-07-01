@@ -6,22 +6,22 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
 
-    @invoice = Invoice.new( :name => "AutoAttend",
-                            :number => "001" ,
-                            :from_name => "Vignesh" ,
-                            :from_details => "181-A, South state bank nagar,
+    @invoice = Invoice.new(:name => "AutoAttend",
+                           :number => "001",
+                           :from_name => "Vignesh",
+                           :from_details => "181-A, South state bank nagar,
 Poondurai road,
 Erode - 638002,
 India",
-                            :to_name => "Sindhuja" ,
-                            :to_details => "5E, Dev Apartments,
+                           :to_name => "Sindhuja",
+                           :to_details => "5E, Dev Apartments,
 17, Sundarajan street,
 Chennai - 600018,
-India" ,
-                            :subtotal => "$1100",
-                            :tax => "NA",
-                            :total => "$1100",
-                            :cover => "Dear Sindhuja,
+India",
+                           :subtotal => "$1100",
+                           :tax => "NA",
+                           :total => "$1100",
+                           :cover => "Dear Sindhuja,
 
 Please find the invoice for my services. Please complete the payment at your earliest convenience. Do not hesitate to contact me with any questions.
 
@@ -29,8 +29,8 @@ Regards,
 Vignesh"
 
     )
-    @invoice.line_items.build(:service => "Design" , :quantity => "10 hours" , :price => "$10/hr" , :subtotal => "$100")
-    @invoice.line_items.build(:service => "Development" , :quantity => "100 hours" , :price => "$10/hr" , :subtotal => "$1000")
+    @invoice.line_items.build(:service => "Design", :quantity => "10 hours", :price => "$10/hr", :subtotal => "$100")
+    @invoice.line_items.build(:service => "Development", :quantity => "100 hours", :price => "$10/hr", :subtotal => "$1000")
     5.times do
       @invoice.line_items.build
     end
@@ -66,7 +66,12 @@ Vignesh"
     @invoice = Invoice.new(invoice_params)
     @invoice.save
 
-    redirect_to "http://localhost:5040/invoices/#{@invoice.id}.pdf"
+    if Rails.env == "development"
+      redirect_to "http://localhost:5040/invoices/#{@invoice.uuid}.pdf"
+    elsif Rails.env == "production"
+      redirect_to "http://invoiceaspdf.com/invoices/#{@invoice.uuid}.pdf"
+    end
+
   end
 
   # PATCH/PUT /invoices/1
@@ -96,11 +101,11 @@ Vignesh"
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_invoice
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.find_by_uuid(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.require(:invoice).permit(:name, :number, :from, :to, :total, :subtotal, :contact , :from_name ,:from_details , :to_name , :to_details , :tax , :cover , :line_items_attributes => [:id , :price , :service , :description ,:quantity , :subtotal] )
+    params.require(:invoice).permit(:name, :number, :from, :to, :total, :subtotal, :contact, :from_name, :from_details, :to_name, :to_details, :tax, :cover, :line_items_attributes => [:id, :price, :service, :description, :quantity, :subtotal])
   end
 end

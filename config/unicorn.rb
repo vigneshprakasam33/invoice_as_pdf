@@ -1,7 +1,7 @@
 root = '/apps/invoice_as_pdf/current'
-#root = '/Volumes/CodeZone/twilio/attendant'
+#root = '/Volumes/CodeZone/RailsProjects/invoiceaspdf'
 working_directory root
-pid "#{root}/tmp/pids/unicorn.pid"
+pid "/apps/invoice_as_pdf/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 

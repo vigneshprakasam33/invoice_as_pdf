@@ -1,31 +1,16 @@
-<div class="container" id="wrapper">
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <a href="#">
-          Invoice as Pdf
-        </a>
-      </li>
-      <li>
-        <a href="#">Dashboard</a>
-      </li>
-      <li>
-        <a href="#">Overview</a>
-      </li>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li>
-    </ul>
-  </div>
-  <!-- /#sidebar-wrapper -->
+
+
+<div class="alert alert-info text-center" role="alert">
+  Edit the template to make your own invoice and download it as a pdf . This service is absolutely free !
+</div>
+
+<%= form_for @invoice do |f| %>
+<div class="container" id="wrapper" >
+
   <!-- Page Content -->
-  <div id="page-content-wrapper" class="invoice">
+  <div id="page-content-wrapper" class="invoice" style="background-color: #fff;">
     <div class="container-fluid">
-      <%= form_for @invoice do |f| %>
+
           <div class="row">
             <div class="col-xs-6">
               <h1>
@@ -117,18 +102,32 @@
               </strong>
             </div>
           </div>
-          <div class="text-center">
-            <%= button_tag :class => "btn btn-primary" do %>
-                Download <i class="icon-download"> </i>
-            <% end  %>
 
-          </div>
-
-      <% end %>
     </div>
   </div>
 </div>
 
+    <div class="text-center">
+      <%= button_tag :class => "btn btn-primary" do %>
+          Download Invoice <i class="fi-download large " style="font-size: 1.9rem;"> </i>
+      <% end  %>
+
+    </div>
+
+<% end %>
+
+
+<br>
+<br>
+
+<footer class="footer" style="background-color: #000">
+  <div>
+    <p class="text-muted text-center center-block">- Developed by <a href="http://autoattend.com">Autoattend</a> -
+      <br>
+      <a href="mailto:admin@autoattend.com"><i id="social" class="fi-mail" style="font-size: 20px ; vertical-align: middle;"></i> &nbsp;Mail us your feedback </a>
+    </p>
+  </div>
+</footer>
 
 
 
